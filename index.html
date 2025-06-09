@@ -1,49 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fábio dev </title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-      <div class="navbar">
-    <a href="#inicio">Início</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#contato">Contato</a>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Para alguém especial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="titulo">Feliz Dia dos Namorados 💌</h1>
+    <p class="mensagem" id="mensagemInicial">
+      Tem pessoas que encantam a gente só por existir... e você é uma delas.
+    </p>
+    <button onclick="revelarMensagem()">Ver algo que pensei...</button>
+    <p class="mensagem-secreta" id="mensagemSecreta">
+      Admiração é pouco pra descrever o que sinto quando você sorri. 💫
+    </p>
   </div>
-    <div class="painel">
-      <h1>Bom dia!</h1>
 
-      <img
-        src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif"
-        alt=""
-      />
-
-      <p>Bom dia!
-Que a paz do Senhor esteja sobre a sua vida neste novo dia. Que cada passo seu seja guiado pelo Espírito Santo, e que você sinta o amor e a presença de Deus em cada momento.
-“Este é o dia que o Senhor fez; regozijemo-nos e alegremo-nos nele.” – Salmos 118:24
-Deus abençoe o seu dia!</p>
-
-      <button id="sim">Sim</button>
-      <button onmouseleave="fuja()" id="nao">Não</button>
-      <script>
-        function fuja() {
-          var botaoNao = document.getElementById("nao");
-
-          var largurajanela = window.innerWidth;
-          var alturajanela = window.innerHeight;
-
-          var maxX = largurajanela - botaoNao.offsetWidth;
-          var maxY = alturajanela - botaoNao.offsetHeight;
-
-          var aleatorioX = Math.floor(Math.random() * maxX);
-          var aleatorioY = Math.floor(Math.random() * maxY);
-
-          botaoNao.style.left = aleatorioX + "px";
-          botaoNao.style.top = aleatorioY + "px";
-        }
-      </script>
-    </div>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
