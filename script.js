@@ -10,18 +10,26 @@ function revelarMensagem() {
   foto.style.display = "block";
 }
 
- let slideAtual = 0;
-    const slides = document.querySelectorAll('.slide');
+ let slideIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
 
-    function mostrarSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
+  function mostrarSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
 
-    function mudarSlide(direcao) {
-      slideAtual += direcao;
-      if (slideAtual < 0) slideAtual = slides.length - 1;
-      if (slideAtual >= slides.length) slideAtual = 0;
-      mostrarSlide(slideAtual);
-    }
+  function mudarSlide(direction) {
+    slideIndex += direction;
+    if (slideIndex < 0) slideIndex = totalSlides - 1;
+    if (slideIndex >= totalSlides) slideIndex = 0;
+    mostrarSlide(slideIndex);
+  }
+
+  // Passa slide automaticamente a cada 5 segundos
+  setInterval(() => {
+    mudarSlide(1);
+  }, 5000);
+
+  mostrarSlide(slideIndex);
