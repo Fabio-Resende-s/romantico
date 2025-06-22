@@ -1,35 +1,92 @@
-function revelarMensagem() {
-  const msg = document.getElementById("mensagemSecreta");
-  msg.style.display = "block";
-}
-function revelarMensagem() {
-  const msg = document.getElementById("mensagemSecreta");
-  const foto = document.getElementById("fotoSurpresa");
+let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+let total = carrinho.reduce((soma, item) => soma + item.preco, 0);
 
-  msg.style.display = "block";
-  foto.style.display = "block";
+function adicionarAoCarrinho(produto, preco) {
+  carrinho.push({ produto, preco });
+  total += preco;
+  salvarCarrinho();
+  atualizarCarrinho();
 }
 
- let slideIndex = 0;
-  const slides = document.querySelectorAll('.slide');
-  const totalSlides = slides.length;
+function salvarCarrinho() {
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
 
-  function mostrarSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
+function atualizarCarrinho() {
+  const lista = document.getElementById("lista-carrinho");
+  lista.innerHTML = "";
+  carrinho.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.produto} - R$ ${item.preco}`;
+    lista.appendChild(li);
+  });
+  document.getElementById("total").textContent = total.toFixed(2);
+}
+
+function finalizarPedido() {
+  alert("Pedido finalizado!");
+  carrinho = [];
+  total = 0;
+  salvarCarrinho();
+  atualizarCarrinho();
+}
+
+window.onload = atualizarCarrinho;
+
+// Exibir login e esconder conteúdo até logar
+window.onload = function() {
+  document.querySelector("main").style.display = "none";
+  atualizarCarrinho();
+};
+
+// Cadastro
+function fazerCadastro() {
+  const usuario = document.getElementById("cad-usuario").value;
+  const senha = document.getElementById("cad-senha").value;
+
+  if (!usuario || !senha) {
+    alert("Preencha todos os campos.");
+    return;
   }
 
-  function mudarSlide(direction) {
-    slideIndex += direction;
-    if (slideIndex < 0) slideIndex = totalSlides - 1;
-    if (slideIndex >= totalSlides) slideIndex = 0;
-    mostrarSlide(slideIndex);
+  // Verifica se já existe
+  const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+  const existe = usuarios.find(u => u.usuario === usuario);
+
+  if (existe) {
+    alert("Usuário já cadastrado!");
+  } else {
+    usuarios.push({ usuario, senha });
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    alert("Cadastro feito com sucesso!");
+    mostrarLogin();
   }
+}
 
-  // Passa slide automaticamente a cada 5 segundos
-  setInterval(() => {
-    mudarSlide(1);
-  }, 5000);
+// Login
+function fazerLogin() {
+  const usuario = document.getElementById("login-usuario").value;
+  const senha = document.getElementById("login-senha").value;
 
-  mostrarSlide(slideIndex);
+  const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+  const encontrado = usuarios.find(u => u.usuario === usuario && u.senha === senha);
+
+  if (encontrado) {
+    alert("Login bem-sucedido!");
+    document.getElementById("tela-login").style.display = "none";
+    document.querySelector("main").style.display = "block";
+  } else {
+    alert("Usuário ou senha incorretos.");
+  }
+}
+
+// Alternar telas
+function mostrarCadastro() {
+  document.getElementById("tela-login").style.display = "none";
+  document.getElementById("tela-cadastro").style.display = "flex";
+}
+
+function mostrarLogin() {
+  document.getElementById("tela-login").style.display = "flex";
+  document.getElementById("tela-cadastro").style.display = "none";
+}

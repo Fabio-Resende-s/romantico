@@ -1,59 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Para alguém especial</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanche Rápido</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./script.js">
+</head>
+<body>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="titulo">Feliz Dia dos Namorados 💌</h1>
-      <p class="mensagem" id="mensagemInicial">
-        Tem pessoas que encantam a gente só por existir... e você é uma delas.
-      </p>
-      <button onclick="revelarMensagem()">Ver algo que pensei...</button>
-      <p class="mensagem-secreta" id="mensagemSecreta">
-        Admiração é pouco pra descrever o que sinto quando você sorri. 💫<br />
-        Obrigado por ser tão você, Suelany.
-        <br />
-        <img
-          src="STK-20250527-WA0038 (2).webp"
-          alt="Foto da Suelany"
-          class="foto"
-        />
-      </p>
-    </div>
+  <header>
+    <h1>Lanche Rápido</h1>
+    <nav>
+      <ul>
+        <li><a href="#cardapio">Cardápio</a></li>
+        <li><a href="#carrinho">Carrinho</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="slider" id="slider">
-  <div class="slide active">
-    <p>
-      Feliz Dia dos Namorados, Suelany!<br />
-      Mesmo não sendo o meu dia com alguém, fico feliz por ver pessoas como você celebrando o amor. Que Deus continue guiando teu coração com essa leveza que só você tem.<br /><br />
-      Você merece tudo de mais bonito — hoje e sempre. 💐✨
-    </p>
-    <img class="foto"  src="278470398_362996179115732_945600938192795544_n.jpg" alt="gddsgsdsdgdsdsgds" />
-  </div>
-  <div class="slide">
-    <p>Não sei explicar... mas tem algo em você que faz o mundo parecer mais leve quando tá por perto. ✨</p>
-    <img src="https://i.pinimg.com/originals/f3/00/9b/f3009b260fb3aaf55fd6ac31175c1927.gif" alt="Gif de carinho" />
-  </div>
-  <div class="slide">
-    <p>Esse ursinho é só um símbolo...<br />de como você me deixa bobo(a) 😅</p>
-    <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho fofo" />
-  </div>
+ <div id="tela-login">
+  <h2>Login</h2>
+  <input type="text" id="login-usuario" placeholder="Usuário">
+  <input type="password" id="login-senha" placeholder="Senha">
+  <button onclick="fazerLogin()">Entrar</button>
+  <p>Ainda não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a></p>
 </div>
 
-<div class="nav-buttons">
-  <button onclick="mudarSlide(-1)">⬅️ Voltar</button>
-  <button onclick="mudarSlide(1)">Avançar ➡️</button>
+<div id="tela-cadastro" style="display: none;">
+  <h2>Cadastro</h2>
+  <input type="text" id="cad-usuario" placeholder="Novo Usuário">
+  <input type="password" id="cad-senha" placeholder="Nova Senha">
+  <button onclick="fazerCadastro()">Cadastrar</button>
+  <p>Já tem conta? <a href="#" onclick="mostrarLogin()">Fazer login</a></p>
 </div>
 
-    <footer class="rodape">
-      <p>Com carinho, de alguém que te admira de verdade 🌹</p>
-    </footer>
 
-    <script src="script.js"></script>
-  </body>
+  <main>
+    <section id="cardapio">
+  <h2>Cardápio</h2>
+
+  <div class="produto">
+    <img src="src/imagem/hamb-1.png" alt="Hambúrguer">
+    <h3>Hambúrguer</h3>
+    <p>R$ 10,00</p>
+    <button onclick="adicionarAoCarrinho('Hambúrguer', 20)">Adicionar</button>
+  </div>
+
+  <div class="produto">
+    <img src="src/imagem/hamb-2.png" alt="X-Salada">
+    <h3>X-Salada</h3>
+    <p>R$ 10,00</p>
+    <button onclick="adicionarAoCarrinho('X-Salada', 22)">Adicionar</button>
+  </div>
+
+  <div class="produto">
+    <img src="src/imagem/hamb-3.png" alt="Batata Frita">
+    <h3>Batata Frita</h3>
+    <p>R$ 10,00</p>
+    <button onclick="adicionarAoCarrinho('Batata Frita', 10)">Adicionar</button>
+  </div>
+
+  <div class="produto">
+    <img src="src/imagem/hamb-5.png" alt="Refrigerante">
+    <h3>Refrigerante</h3>
+    <p>R$ 6,00</p>
+    <button onclick="adicionarAoCarrinho('Refrigerante', 6)">Adicionar</button>
+  </div>
+
+  <div class="produto">
+    <img src="src/imagem/hamb-6.png" alt="Sorvete">
+    <h3>Sorvete</h3>
+    <p>R$ 8,00</p>
+    <button onclick="adicionarAoCarrinho('Sorvete', 8)">Adicionar</button>
+  </div>
+</section>
+
+      <!-- Adicione mais produtos -->
+    </section>
+
+    <section id="carrinho">
+      <h2>Carrinho</h2>
+      <ul id="lista-carrinho"></ul>
+      <p>Total: R$ <span id="total">0</span></p>
+      <button onclick="finalizarPedido()">Finalizar Pedido</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>

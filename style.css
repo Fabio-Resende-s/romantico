@@ -1,187 +1,81 @@
-body {
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(to right, #fdeff9, hwb(316 21% 7%), #7303c0);
-  font-family: "Arial", sans-serif;
-  color: #fff;
-  text-align: center;
-  padding: 30px;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#cardapio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.produto {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+#tela-login, #tela-cadastro {
+  max-width: 300px;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  gap: 10px;
 }
 
-.container {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 60px;
-  border-radius: 15px;
-  max-width: 500px;
-  margin: auto;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+#tela-login input, #tela-cadastro input,
+#tela-login button, #tela-cadastro button {
+  padding: 10px;
+  font-size: 16px;
 }
 
-.titulo {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
 
-.mensagem {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
-
-button {
-  background-color: #fff;
-  color: #ec38bc;
-  padding: 10px 20px;
-  font-size: 1em;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-top: 15px;
-}
-
-button:hover {
-  background-color: #ffe1f2;
-}
-
-.mensagem-secreta {
-  display: none;
-  margin-top: 20px;
-  font-style: italic;
-  animation: fadeIn 1s ease-in;
-}
-
-.foto {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-top: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-  transition: transform 0.3s ease;
-}
-
-.foto:hover {
-  transform: scale(1.05);
-}
-
-.rodape {
-  margin-top: 50px;
+body {
+  font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 0.9em;
-  color: #fff;
+}
+
+header {
+  background-color: #ff4d4d;
+  padding: 15px;
+  color: white;
   text-align: center;
-  font-style: italic;
 }
 
-/* RESPONSIVO PARA TELAS PEQUENAS */
-@media screen and (max-width: 600px) {
-  .container {
-    padding: 20px;
-  }
-
-  .titulo {
-    font-size: 1.6em;
-  }
-
-  .mensagem {
-    font-size: 1em;
-  }
-
-  .foto {
-    width: 140px;
-    height: 140px;
-  }
-
-  button {
-    width: 100%;
-    font-size: 1em;
-  }
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  margin-top: 10px;
 }
 
- .slider {
-    position: relative;
-    max-width: 100%;      /* Limita o máximo para a largura da tela */
-    width: 350px;         /* Largura padrão no desktop */
-    margin: 20px auto;
-    overflow: hidden;
-    
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+.produto {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.produto img {
+  width: 100%;
+  max-width: 200px;
+}
+
+@media (max-width: 600px) {
+  .produto {
+    margin: 10px auto;
   }
-
-
-/* Cada slide fica oculto exceto o ativo */
-  .slide {
-    display: none;
-    text-align: center;
-   
-  }
-
-.slide.active {
-    display: block;
-   
-  }
-
-
-  /* Imagens com largura máxima da área disponível */
-  .slide img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 12px;
-  }
-
-    /* Texto dentro dos slides */
-  .slide p {
-    font-size: 1rem;
-    color: #f9f6f6;
-    line-height: 1.4;
-    margin: 0;
-  }
-  /* Botões de navegação */
-  .nav-buttons {
-    text-align: center;
-    margin-top: 15px;
-  }
-
-.nav-buttons button {
-  background-color: #fbfafb;
-    color: rgb(235, 74, 214);
-    border: none;
-    padding: 10px 18px;
-    margin: 0 7px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.5s ease;
-  }
-  .nav-buttons button:hover {
-    background: #e91e63;
-  }
-
-    /* RESPONSIVIDADE */
-
-  /* Para telas pequenas (smartphones) */
-  @media (max-width: 400px) {
-    .slider {
-      width: 90vw; /* 90% da largura da tela */
-      padding: 12px;
-    }
-
-    .slide p {
-      font-size: 0.9rem;
-    }
-
-    .nav-buttons button {
-      padding: 8px 14px;
-      font-size: 0.9rem;
-      margin: 0 5px;
-    }
+}
